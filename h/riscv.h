@@ -112,12 +112,6 @@ public:
 private:
 
     //izlazni baffer
-
-
-
-
-
-
     // supervisor trap handler
     static void handleSupervisorTrap();
 

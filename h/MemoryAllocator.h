@@ -30,11 +30,6 @@ public:
 
 private:
     MemoryAllocator();
-
-
-
-
-
 };
 
 #endif
