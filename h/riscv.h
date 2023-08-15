@@ -103,9 +103,6 @@ public:
     // supervisor trap
     static void supervisorTrap();
 
-
-
-
     //pozadinska funkcija kernel niti koja salje charove kontroleru periferija
     static void outputBufConsumer(void* arg);
 
