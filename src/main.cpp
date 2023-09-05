@@ -11,6 +11,7 @@
 //#include "../h/ConsumerProducer_CPP_API_test.hpp"
 //#include "../h/ConsumerProducer_CPP_Sync_API_test.hpp"
 #include "../h/Threads_C_API_test.hpp"
+#include "../h/BuddyAllocator.hpp"
 Semaphore* sem;
 class WorkerA: public PeriodicThread {
 public:
@@ -50,7 +51,7 @@ void userMain(void* arg){
     //producerConsumer_CPP_Sync_API();
     //ConsumerProducerCPP::testConsumerProducer();
     //producerConsumer_C_API();
-    sem = new Semaphore();
+    /*sem = new Semaphore();
     WorkerA* a = new WorkerA(5);
     WorkerB* b = new WorkerB(5);
     WorkerC* c = new WorkerC(5);
@@ -71,14 +72,41 @@ void userMain(void* arg){
     while(getc()!= 'k'){
 
     }
-    c->stopThread();
+    c->stopThread();*/
 
+    BuddyAllocator* ba = BuddyAllocator::getInstance();
+    void* a = ba->alloc(3);
+    printString("a\n");
+    printInt((unsigned long long)a);
+    void* b = ba->alloc(5);
+    printString("\nb\n");
+    printInt((unsigned long long ) b);
+    void* c = ba->alloc(8);
+    printString("\nc\n");
+    printInt((unsigned long long )c);
+    printString("\n");
+    void* d = ba->alloc(10000);
+    printString("\nd\n");
+    printInt((unsigned long long) d);
+    printString("\n");
+    void* e = ba->alloc(10000);
+    printString("\ne\n");
+    printInt((unsigned long long) e);
+    printString("\n");
+    ba->free(a, 3);
+    ba->free(b, 5);
+    void* f = ba->alloc(3);
+    printString("\nf\n");
+    printInt((unsigned long long) f);
+    printString("\n");
 
 
 
 
 }
 void main(){
+
+
     Riscv::outputBuf = new KernelBuffer();
     Riscv::inputBuf = new KernelBuffer();
 

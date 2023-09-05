@@ -7,6 +7,7 @@
 
 #include "../lib/hw.h"
 
+
 class MemoryAllocator{
 public:
     struct FreeMem{
@@ -17,7 +18,6 @@ public:
 
     };
 
-    //static void init();
     static FreeMem* head;
     static  void* heapEnd;
     void* memAlloc(size_t bytes);
